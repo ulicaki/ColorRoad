@@ -23,10 +23,13 @@ public class Player : MonoBehaviour
     [SerializeField] AudioClip JumpSound;
     // Start is called before the first frame update
 
+// on level start dont move until level starts
     private void Start()
     {
         StopMove();
     }
+    
+    // play jump animation when player hit SmallJumper
     public void SmallJump ()
     {
         AS.PlayOneShot(JumpSound);
@@ -34,13 +37,14 @@ public class Player : MonoBehaviour
         PlayerAnimator.Play("SmallJump");
     }
 
-    // Update is called once per frame
+    // move and rotate player along path
     void Update()
     {
         DisTraveld += Speed * Time.deltaTime;
         transform.position = PathCreat.path.GetPointAtDistance(DisTraveld);
       transform.rotation = PathCreat.path.GetRotationAtDistance(DisTraveld);
     }
+
 
     public void StopMove ()
     {
