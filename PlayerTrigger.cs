@@ -50,6 +50,7 @@ public class PlayerTrigger : MonoBehaviour
 
     private void Update()
     {
+    // Calc time between combo collect
          if(ComboTimer > 0)
         {
             IsCombo = true;
@@ -67,6 +68,7 @@ public class PlayerTrigger : MonoBehaviour
 
     }
 
+// On every collect cheack if it combo time, if yes add pith to collect sound
     void CheackCombo ()
     {
         if (IsCombo)
@@ -79,7 +81,7 @@ public class PlayerTrigger : MonoBehaviour
        
     private void OnTriggerEnter(Collider other)
     {
-
+// if its SmallJumper do jump animation and get color of SmallJumper for apply
         if (other.gameObject.tag == "SmallJumper")
         {
 
@@ -88,6 +90,8 @@ public class PlayerTrigger : MonoBehaviour
             CheackColor();
         }
 
+
+// if its End of the level so stop all movement and turn on Win Panel 
         if (other.gameObject.tag == "WinTrigger")
         {
             GameObject.FindGameObjectWithTag("PlayerMain").GetComponent<Player>().StopMove();
@@ -101,6 +105,9 @@ public class PlayerTrigger : MonoBehaviour
 
         }
 
+// if its RedBall so first Check if player is in the same color
+// yes: add point, do feedback to camera, print points, check combo and instantiate effect for collecting
+// no: stop player and camera movement and turn on Lose panel
         if (other.gameObject.tag == "PointRed")
         {
             if (mode != 3)
@@ -131,6 +138,9 @@ public class PlayerTrigger : MonoBehaviour
             }
         }
 
+// if its RedBall so first Check if player is in the same color
+// yes: add point, do feedback to camera, print points, check combo and instantiate effect for collecting
+// no: stop player and camera movement and turn on Lose panel
         if (other.gameObject.tag == "PointYellow")
         {
             if (mode != 2)
@@ -156,6 +166,9 @@ public class PlayerTrigger : MonoBehaviour
             }
         }
 
+// if its RedBall so first Check if player is in the same color
+// yes: add point, do feedback to camera, print points, check combo and instantiate effect for collecting
+// no: stop player and camera movement and turn on Lose panel
         if (other.gameObject.tag == "PointGreen")
         {
             if (mode != 1)
@@ -181,6 +194,8 @@ public class PlayerTrigger : MonoBehaviour
             }
         }
     }
+    
+    // cheack which color is now and apply it to: ball, World objects and skybox
         void CheackColor()
         {
             switch (mode)
