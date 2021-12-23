@@ -7,6 +7,8 @@ public class GM : MonoBehaviour
     [SerializeField] GameObject StartButton;
     [SerializeField] AudioSource AS;
     [SerializeField] AudioClip StartS;
+    
+    // on scene start stop player and camera movement
     public void StartGame()
     {
         GameObject.FindGameObjectWithTag("PlayerMain").GetComponent<Player>().StartMove();
