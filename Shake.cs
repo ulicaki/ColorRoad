@@ -13,6 +13,7 @@ public class Shake : MonoBehaviour
         
     }
 
+// On ball collect do some feedback
     IEnumerator Shaking()
     {
         Post.SetActive(true);
